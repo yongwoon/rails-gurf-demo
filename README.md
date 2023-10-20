@@ -4,6 +4,29 @@ This is a demo Rails application that utilizes [gruf](https://github.com/bigcomm
 
 This application is running Rails 6.1 in Ruby 3.1.
 
+## Running with docker
+
+- Build Image
+
+```bash
+docker-compose build --no-cache
+```
+
+- `bundle install`
+
+```bash
+docker-compose run --rm backend bundle config set path 'vendor/bundle'
+docker-compose run --rm backend bundle install
+```
+
+Copy the `.env-example` file to `.env`, then set the database URL as `DATABASE_URL`. Next:
+
+```bash
+bundle exec rake db:create db:migrate
+bundle exec rake db:seed
+bundle exec gruf
+```
+
 ## Running
 
 Copy the `.env-example` file to `.env`, then set the database URL as `DATABASE_URL`. Next:
