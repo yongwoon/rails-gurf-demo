@@ -1,7 +1,7 @@
 version: "3"
 services:
   backend:
-    container_name: dev_grup_demo_backend
+    container_name: dev_gruf_demo_backend
     build: .
     environment:
       DATABASE_URL: mysql2://root@db:3306/gruf_demo_development?reconnect=true
@@ -14,7 +14,7 @@ services:
     stdin_open: true
     tty: true
     networks:
-      - dev_grup_demo_network
+      - dev_gruf_demo_network
     env_file:
       - .env
     working_dir: /app
@@ -24,7 +24,7 @@ services:
     #   - bundle exec gruf
 
   db:
-    container_name: dev_grup_demo_db
+    container_name: dev_gruf_demo_db
     image: mysql:8.0.32
     command: >
       mysqld
@@ -34,9 +34,9 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - dev_grup_demo_db_volume:/var/lib/mysql
+      - dev_gruf_demo_db_volume:/var/lib/mysql
     networks:
-      - dev_grup_demo_network
+      - dev_gruf_demo_network
     security_opt:
       - seccomp:unconfined
     environment:
@@ -47,6 +47,6 @@ services:
       # MYSQL_ROOT_PASSWORD: mysqlrootpass
 
 volumes:
-  dev_grup_demo_db_volume:
+  dev_gruf_demo_db_volume:
 networks:
-  dev_grup_demo_network:
+  dev_gruf_demo_network:
