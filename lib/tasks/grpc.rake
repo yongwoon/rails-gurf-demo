@@ -14,6 +14,8 @@ namespace :test do
     end
   end
 
+  # How to execute?
+  # bundle exec rake test:get_products"
   task :get_products, %i[hostname search limit] => :environment do |_, args|
     client = test_grpc_build_client(args, search: '', limit: 10)
 

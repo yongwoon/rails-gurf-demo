@@ -7,8 +7,8 @@ services:
       DATABASE_URL: mysql2://root@db:3306/gruf_demo_development?reconnect=true
     volumes:
       - ./:/app
-    ports:
-      - "10541:10541"
+    # ports:
+    #   - "10541:10541"
     links:
       - db
     stdin_open: true
@@ -18,10 +18,7 @@ services:
     env_file:
       - .env
     working_dir: /app
-    # command:
-    #   - /bin/bash
-    #   - -c
-    #   - bundle exec gruf
+    command: bundle exec gruf # DB create, Seed data を入れるる前だったらコメントする
 
   db:
     container_name: dev_gruf_demo_db
@@ -32,7 +29,7 @@ services:
         --character-set-server=utf8mb4
         --collation-server=utf8mb4_general_ci
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - dev_gruf_demo_db_volume:/var/lib/mysql
     networks:
@@ -42,9 +39,6 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: gruf_demo_development
-      # MYSQL_USER: mysqlusername
-      # MYSQL_PASSWORD: mysqluserpass
-      # MYSQL_ROOT_PASSWORD: mysqlrootpass
 
 volumes:
   dev_gruf_demo_db_volume:
