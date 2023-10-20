@@ -4,7 +4,7 @@ services:
     container_name: dev_grup_demo_backend
     build: .
     environment:
-      DATABASE_URL: mysql2://root@db:3306/grup_demo_development?reconnect=true
+      DATABASE_URL: mysql2://root@db:3306/gruf_demo_development?reconnect=true
     volumes:
       - ./:/app
     ports:
@@ -18,10 +18,10 @@ services:
     env_file:
       - .env
     working_dir: /app
-    command:
-      - /bin/bash
-      - -c
-      - bundle exec gurp
+    # command:
+    #   - /bin/bash
+    #   - -c
+    #   - bundle exec gruf
 
   db:
     container_name: dev_grup_demo_db
@@ -41,7 +41,7 @@ services:
       - seccomp:unconfined
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_DATABASE: grup_demo_development
+      MYSQL_DATABASE: gruf_demo_development
       # MYSQL_USER: mysqlusername
       # MYSQL_PASSWORD: mysqluserpass
       # MYSQL_ROOT_PASSWORD: mysqlrootpass
