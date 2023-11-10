@@ -25,9 +25,12 @@ namespace :test do
       }
       client_args[:search] = args[:search] if args[:search].to_s.present?
       product = client.call(:GetProducts, client_args)
-      product.message.each do |p|
-        puts p.inspect
-      end
+
+      puts "get product test ================= \n" 
+      puts product.message.inspect
+      # product.message.each do |p|
+      #   puts p.inspect
+      # end
     rescue Gruf::Client::Error => e
       puts e.error.inspect
     end

@@ -46,7 +46,8 @@ class ProductsController < Gruf::Controllers::Base
     limit = request.message.limit.to_i.positive? ? request.message.limit : 100
     q.limit(limit).each do |product|
       sleep(rand(0.01..0.3))
-      yield product.to_proto
+      # yield product.to_proto
+      yield ::Rpc::GetProductResp.new(Product: {id: product.id, name: product.name, price: product.price})
     end
   rescue StandardError => e
     set_debug_info(e.message, e.backtrace[0..4])
